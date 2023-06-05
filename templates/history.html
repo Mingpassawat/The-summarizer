@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Type</th>
+                <th scope="col">Date</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for activity in activities %}
+                    {% if activity['title'] %}
+                        <tr>
+                            <td>{{ activity['title'] }}</td>
+                            <td>{{ activity['type'] }}</td>
+                            <td>{{ activity['date'] }}</td>
+                            <td><a href="/view?number={{ activity['number'] }}">View</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

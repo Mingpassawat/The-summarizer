@@ -22,7 +22,7 @@ db = SQL("sqlite:///database.db")
 def index():
 
     # Set defualt value for variables
-    services = ("Summarize", "Transcript", "Convert youtube to mp3")
+    services = ("Summarize", "Transcribe", "Convert youtube to mp3")
     transcript, summary, filepath = "", "", ""
 
     if request.method == "POST":
@@ -64,7 +64,7 @@ def index():
             # Insert transcript to the row
             db.execute("UPDATE activities SET transcript = ? WHERE user_id = ? AND number = ?", transcript, id, number)
 
-            if type != "Transcript":
+            if type != "Transcribe":
                 # summarize
                 summary = summarize(transcript)
 

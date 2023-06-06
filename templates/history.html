@@ -19,7 +19,7 @@
                 {% for activity in activities %}
                     {% if activity['title'] %}
                         <tr>
-                            <td><a href="/delete?number={{ activity['number'] }}">Delete</a></td>
+                            <td><a style="color: red" href="/delete?number={{ activity['number'] }}">x</a></td>
                             <td>{{ activity['title'] }}</td>
                             <td>{{ activity['type'] }}</td>
                             <td>{{ activity['date'] }}</td>

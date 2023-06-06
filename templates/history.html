@@ -8,6 +8,7 @@
         <table class="table">
             <thead>
             <tr>
+                <th></th>
                 <th scope="col">Title</th>
                 <th scope="col">Type</th>
                 <th scope="col">Date</th>
@@ -18,6 +19,7 @@
                 {% for activity in activities %}
                     {% if activity['title'] %}
                         <tr>
+                            <td><a href="/delete?number={{ activity['number'] }}">Delete</a></td>
                             <td>{{ activity['title'] }}</td>
                             <td>{{ activity['type'] }}</td>
                             <td>{{ activity['date'] }}</td>

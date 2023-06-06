@@ -172,8 +172,6 @@ def view():
     number = int(request.args.get("number", "world"))
     id_number = [i['number'] for i in db.execute("SELECT number FROM activities WHERE user_id = ?", id)]
 
-    
-
     # Show error when user not request their number
     if number in id_number:
         # Get row
@@ -181,6 +179,27 @@ def view():
 
         # Render
         return render_template("view.html", url=embed(row['youtube_url']), transcript=row['transcript'], summary=row['summary'], mp3=row['mp3_filepath'])
+    else:
+        return "error"
+
+@app.route("/delete")
+@login_required
+def delete():
+
+    id = session['user_id']
+
+    number = int(request.args.get("number", 0))
+    id_number = [i['number'] for i in db.execute("SELECT number FROM activities WHERE user_id = ?", id)]
+
+    # Show error when user not request their number
+    if number in id_number:
+        
+        # Delete the row
+        db.execute("DELETE FROM activities WHERE number = ?", number)
+
+        # Render history
+        activities = db.execute("SELECT * FROM activities WHERE user_id = ?", session['user_id'])
+        return render_template("history.html", activities=activities)
     else:
         return "error"
 

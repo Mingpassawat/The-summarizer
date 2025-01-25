@@ -4,7 +4,7 @@ from pytube import YouTube
 from flask import redirect, render_template, request, session
 from functools import wraps
 
-API = "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"
+API = ""
 
 # Load API
 openai.api_key = API
